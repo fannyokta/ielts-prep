@@ -42,7 +42,7 @@ function newQ(p){
 
 /* ============ Views ============ */
 function navHtml(r){
-  const crumbs={home:"",vocab:`<a href="#/">Home</a> / Vocabulary`,task1:`<a href="#/">Home</a> / <a href="#/vocab">Vocabulary</a> / Task 1`,task2:`<a href="#/">Home</a> / <a href="#/vocab">Vocabulary</a> / Task 2`,grammar:`<a href="#/">Home</a> / Grammar`};
+  const crumbs={home:"",vocab:`<a href="#/">Home</a> / Vocabulary`,task1:`<a href="#/">Home</a> / <a href="#/vocab">Vocabulary</a> / Task 1`,task2:`<a href="#/">Home</a> / <a href="#/vocab">Vocabulary</a> / Task 2`,grammar:`<a href="#/">Home</a> / Grammar`,skills:`<a href="#/">Home</a> / Writing skills`};
   return `<a class="brand" href="#/">IELTS<i>.</i>prep</a><span class="crumb">${crumbs[r]||""}</span>`;
 }
 
@@ -56,7 +56,8 @@ function home(){
   <div class="menu">
     <a class="mcard" href="#/vocab"><span class="tag">Module 01</span><h2>Vocabulary</h2><p>Useful, easy-to-reuse words for Task 1 and Task 2, with visuals, drills and quizzes.</p><span class="go">Open →</span></a>
     <a class="mcard" href="#/grammar"><span class="tag">Module 02</span><h2>Grammar</h2><p>Clauses, contrast words, commas and the small rules that cost marks.</p><span class="go">Open →</span></a>
-    <div class="mcard soon"><span class="tag">Module 03 · Soon</span><h2>Model answers</h2><p>Band 9 samples with annotations.</p></div>
+    <a class="mcard" href="#/skills"><span class="tag">Module 03</span><h2>Writing skills</h2><p>How to paraphrase the question and write a clear overview.</p><span class="go">Open →</span></a>
+    <div class="mcard soon"><span class="tag">Module 04 · Soon</span><h2>Model answers</h2><p>Band 9 samples with annotations.</p></div>
   </div></div>`;
 }
 
@@ -104,16 +105,27 @@ function task(p){
 function render(){
   const r=route();
   $("nav").innerHTML=navHtml(r);
-  $("app").innerHTML=r==="vocab"?vocab():r==="grammar"?grammar():PAGES[r]?task(r):home();
+  $("app").innerHTML=r==="vocab"?vocab():r==="grammar"?grammar():r==="skills"?skills():PAGES[r]?task(r):home();
 }
 
 window.addEventListener("hashchange",()=>{drill=false;quiz=false;open=null;qs=null;render();window.scrollTo(0,0)});
 
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-t],[data-id],[data-k],[data-o],[data-next],[data-m],[data-bv],[data-ba],[data-gt],[data-gq]");
+  const t=e.target.closest("[data-t],[data-id],[data-k],[data-o],[data-next],[data-m],[data-bv],[data-ba],[data-gt],[data-gq],[data-sk],[data-sl],[data-sr],[data-sov],[data-sq],[data-st],[data-sl2],[data-sr2],[data-th],[data-qt],[data-sp]");
   if(!t)return;
   const p=route();
-  if(t.dataset.gt){gst.tab=t.dataset.gt}
+  if(t.dataset.st){sst.task=+t.dataset.st;sst.tab=SK[sst.task][0]}
+  else if(t.dataset.sl2!==undefined){const i=+t.dataset.sl2;sst.s2[i]=(sst.s2[i]+1)%PL2[i].length}
+  else if("sr2" in t.dataset){sst.s2=PL2.map(()=>0)}
+  else if(t.dataset.th!==undefined){sst.th=+t.dataset.th}
+  else if(t.dataset.qt!==undefined){sst.qt=+t.dataset.qt}
+  else if(t.dataset.sp){const [k,j]=t.dataset.sp.split(":");sst.p[k]=+j}
+  else if(t.dataset.sk){sst.tab=t.dataset.sk}
+  else if(t.dataset.sl!==undefined){const i=+t.dataset.sl;sst.slots[i]=(sst.slots[i]+1)%PL[i].length}
+  else if("sr" in t.dataset){sst.slots=PL.map(()=>0)}
+  else if(t.dataset.sov!==undefined){sst.ov=+t.dataset.sov}
+  else if(t.dataset.sq){const [i,j]=t.dataset.sq.split("|");sst.picks[+i]=+j}
+  else if(t.dataset.gt){gst.tab=t.dataset.gt}
   else if(t.dataset.gq){const [i,j]=t.dataset.gq.split("|");gst.picks[gst.tab+"|"+i]=+j}
   else if(t.dataset.t){state[p].tab=t.dataset.t;open=null;qs=null}
   else if(t.dataset.bv!==undefined)bld.v=+t.dataset.bv;

@@ -103,3 +103,16 @@
   .gopts{display:flex;flex-wrap:wrap;gap:8px}
   footer{padding:40px 0 60px;color:var(--mute);font-size:13px;text-align:center}
   @media(max-width:520px){.opts{grid-template-columns:1fr}}
+
+  /* writing skills */
+  .lab{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
+  .orig{color:var(--mute);font:16px/1.6 Georgia,serif}
+  .sent{font:19px/1.8 Georgia,serif;padding:12px 16px;background:var(--bg);border-radius:10px;margin:6px 0}
+  .slotbtn{border-bottom:2px dashed var(--accent);color:var(--accent);font:inherit;font-weight:600;padding:0 2px}
+  .slotbtn:hover{background:rgba(179,71,47,.08)}
+  .pp{display:flex;gap:12px;padding:3px 0;font-size:15px}
+  .pp .tg{flex:none;width:62px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);padding-top:4px}
+  .pp.a .tg{color:var(--accent)}
+  .step{display:flex;gap:14px;padding:10px 0}
+  .step .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;display:grid;place-items:center;margin-top:2px}
+  .samp{margin:2px 0 0;font:16px/1.7 Georgia,serif}
