@@ -42,7 +42,7 @@ function newQ(p){
 
 /* ============ Views ============ */
 function navHtml(r){
-  const crumbs={home:"",vocab:`<a href="#/">Home</a> / Vocabulary`,task1:`<a href="#/">Home</a> / <a href="#/vocab">Vocabulary</a> / Task 1`,task2:`<a href="#/">Home</a> / <a href="#/vocab">Vocabulary</a> / Task 2`,grammar:`<a href="#/">Home</a> / Grammar`,skills:`<a href="#/">Home</a> / Writing skills`};
+  const crumbs={home:"",vocab:`<a href="#/">Home</a> / Vocabulary`,task1:`<a href="#/">Home</a> / <a href="#/vocab">Vocabulary</a> / Task 1`,task2:`<a href="#/">Home</a> / <a href="#/vocab">Vocabulary</a> / Task 2`,grammar:`<a href="#/">Home</a> / Grammar`,skills:`<a href="#/">Home</a> / Writing skills`,speaking:`<a href="#/">Home</a> / Speaking`};
   return `<a class="brand" href="#/">IELTS<i>.</i>prep</a><span class="crumb">${crumbs[r]||""}</span>`;
 }
 
@@ -57,7 +57,8 @@ function home(){
     <a class="mcard" href="#/vocab"><span class="tag">Module 01</span><h2>Vocabulary</h2><p>Useful, easy-to-reuse words for Task 1 and Task 2, with visuals, drills and quizzes.</p><span class="go">Open →</span></a>
     <a class="mcard" href="#/grammar"><span class="tag">Module 02</span><h2>Grammar</h2><p>Clauses, contrast words, commas and the small rules that cost marks.</p><span class="go">Open →</span></a>
     <a class="mcard" href="#/skills"><span class="tag">Module 03</span><h2>Writing skills</h2><p>How to paraphrase the question and write a clear overview.</p><span class="go">Open →</span></a>
-    <div class="mcard soon"><span class="tag">Module 04 · Soon</span><h2>Model answers</h2><p>Band 9 samples with annotations.</p></div>
+    <a class="mcard" href="#/speaking"><span class="tag">Module 04</span><h2>Speaking</h2><p>Part 1–3 templates, a Part 2 timer, a voice recorder and a self-check.</p><span class="go">Open →</span></a>
+    <div class="mcard soon"><span class="tag">Module 05 · Soon</span><h2>Model answers</h2><p>Band 9 samples with annotations.</p></div>
   </div></div>`;
 }
 
@@ -105,7 +106,7 @@ function task(p){
 function render(){
   const r=route();
   $("nav").innerHTML=navHtml(r);
-  $("app").innerHTML=r==="vocab"?vocab():r==="grammar"?grammar():r==="skills"?skills():PAGES[r]?task(r):home();
+  $("app").innerHTML=r==="vocab"?vocab():r==="grammar"?grammar():r==="skills"?skills():r==="speaking"?speaking():PAGES[r]?task(r):home();
 }
 
 window.addEventListener("hashchange",()=>{drill=false;quiz=false;open=null;qs=null;render();window.scrollTo(0,0)});
