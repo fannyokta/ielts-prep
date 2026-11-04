@@ -76,3 +76,21 @@ const VIZ={
   ocontrast:()=>line([[14,60],[50,48],[90,34],[148,16]],tx(60,86,'while · however','start','acc'),pl([[14,20],[50,32],[90,48],[148,66]],'ln2'))
 };
 
+
+/* extra illustrations for newer groups */
+VIZ.nphr=()=>line([[14,70],[40,66],[66,48],[92,22],[122,14],[148,12]],tx(92,16,'a sharp increase','end','acc')+tx(150,28,'a steady rise','end','mu'),pl([[14,30],[44,34],[74,44],[104,58],[148,72]],'ln2')+tx(150,82,'a dramatic drop','end','mu'));
+VIZ.mdir=()=>svg('<rect x="4" y="8" width="152" height="74" rx="4" fill="#f1ede4"/><path d="M4 56C50 40 100 70 156 50" stroke="#bcd0de" stroke-width="8" fill="none"/><rect x="0" y="0" width="0" height="0"/><rect x="74" y="30" width="10" height="46" fill="#ddd7cc"/><rect x="72" y="52" width="14" height="6" fill="var(--accent)"/>'+ar(79,28,79,12)+tx(88,20,'leads to','start','acc')+tx(10,36,'river stretches','start','mu')+tx(90,68,'bridge crosses','start','mu')+tx(10,78,'road runs through','start'));
+VIZ.ptab=()=>{const r=(y,a,b,c,hl)=>tx(8,y,a,'start',hl?'acc':'')+tx(78,y,b,'middle')+tx(106,y,c,'middle')+tx(130,y,hl?'':'','start');
+  return svg('<rect x="4" y="8" width="152" height="16" rx="4" fill="#f1ede4"/>'+tx(8,19,'','start')+tx(78,19,'A','middle','mu')+tx(106,19,'B','middle','mu')+r(40,'a minority','10%','20%',1)+r(58,'respectively','A, B','','')+tx(80,78,'10% and 20%, respectively','middle','acc'))};
+/* larger overview illustration shown at the top of a Task 1 tab */
+const HERO={
+ "Line & Bar":()=>`<svg viewBox="0 0 320 130"><path class="ax" d="M24 8V112H312"/>
+  <polyline points="24,102 80,90 140,66 200,42 260,26 306,18" fill="none" stroke="#4d7c58" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="24,30 80,38 140,52 200,80 260,100 306,106" fill="none" stroke="#b3472f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="24,66 80,64 140,68 200,63 260,67 306,64" fill="none" stroke="#c9922b" stroke-width="3" stroke-dasharray="6 4" stroke-linecap="round"/>
+  ${tx(300,12,'rise · climb · surge','end')}${tx(300,98,'fall · plummet · slump','end')}${tx(300,58,'plateau · level off','end')}${tx(28,124,'time →','start','mu')}</svg>`,
+ "Map":()=>mpair([R,['h',6,8],['h',18,8],['p',40,4,24,30],['h',6,24],['h',18,24]],[R,['s',6,8,22,12],['s',6,24,22,12],['s',40,4,24,30],['h',44,36]],'farm → school · houses → flats'),
+ "Process":()=>svg(bx(2,30,'pick',0,30)+bx(44,30,'wash',0,30)+bx(86,30,'heat',0,30)+bx(128,30,'pack',1,30)+ar(33,41,43,41)+ar(75,41,85,41)+ar(117,41,127,41)+tx(80,74,'first → then → next → finally','middle','acc')+tx(80,14,'is picked · washed · heated · packed','middle','mu')),
+ "Pie, Table & Compare":()=>svg('<rect x="4" y="6" width="152" height="16" rx="4" fill="#f1ede4"/>'+tx(8,17,'category','start','mu')+tx(70,17,'2015','middle','mu')+tx(100,17,'2020','middle','mu')+tx(130,17,'change','start','mu')
+  +[['online','35%','68%','▲ rise'],['in-store','65%','32%','▼ fall'],['mobile','10%','45%','▲ surge']].map((r,i)=>tx(8,38+i*18,r[0])+tx(70,38+i*18,r[1],'middle')+tx(100,38+i*18,r[2],'middle')+tx(130,38+i*18,r[3],'start','acc')).join(''))
+};

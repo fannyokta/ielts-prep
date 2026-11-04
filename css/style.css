@@ -116,3 +116,7 @@
   .step{display:flex;gap:14px;padding:10px 0}
   .step .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;display:grid;place-items:center;margin-top:2px}
   .samp{margin:2px 0 0;font:16px/1.7 Georgia,serif}
+
+  .tip{margin:18px 0 8px;padding:12px 16px;border-left:3px solid var(--accent);background:#f1ede4;border-radius:0 8px 8px 0;font-size:14px}
+  .hero-viz{margin:6px 0 18px;padding:14px;background:#fcfbf8;border:1px solid var(--line);border-radius:12px}
+  .hero-viz svg{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}

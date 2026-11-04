@@ -97,7 +97,7 @@ function task(p){
         eg=`<div class="eg">${esc(x[1]).replace(/\[\[(.+?)\]\]/g,"<b>$1</b>")}<button data-k="${esc(x[0])}">${known.has(x[0])?'Unmark':'Got it ✓'}</button></div>`}
       const viz=P.viz&&g.v?`<div class="viz">${VIZ[g.v]()}</div>`:"";
       return `<section class="group"><h3>${g.h||`Instead of <b>“${g.c}”</b>`}</h3><div class="gbody">${viz}<div class="side"><div class="chips">${chips}</div>${eg}</div></div></section>`}).join("");
-    body=`<div class="hint"><span>${drill?"Words are hidden. Tap to reveal.":"Tap a word for an example."}</span><span>${got} / ${total} learned</span></div>${p==='task1'&&tab==='Verb + Adverb'?builder():''}${groups}`;
+    body=`<div class="hint"><span>${drill?"Words are hidden. Tap to reveal.":"Tap a word for an example."}</span><span>${got} / ${total} learned</span></div>${p==='task1'&&HERO[tab]?`<div class="hero-viz">${HERO[tab]()}</div>`:''}${p==='task1'&&tab==='Verb + Adverb'?builder():''}${groups}${p==='task1'&&T1_TIPS[tab]?`<div class="tip"><b>Tip:</b> ${T1_TIPS[tab]}</div>`:''}`;
   }
   return head+title+body+"</div>";
 }
